@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SF Bike Guide | Guided Rides in San Francisco</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #1f2933;
+      --muted: #5f6b76;
+      --line: #d8d8d8;
+      --accent: #2f6d59;
+      --accent-soft: #e9f4ef;
+      --highlight: #f5cc72;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .top-bar {
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .top-bar-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 0.96rem;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .page {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 22px 20px 60px;
+    }
+
+    .hero {
+      margin-top: 8px;
+      padding: 8px 0 14px;
+    }
+
+    .page > figure.hero-top-banner + section.hero {
+      margin-top: 0;
+      padding-top: 4px;
+      border-top: none;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+      font-size: 0.76rem;
+      margin: 0 0 10px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.25;
+      font-family: "Avenir Next", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #006b4b;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4.6vw, 3rem);
+      max-width: 20ch;
+    }
+
+    .hero p {
+      margin: 16px 0 0;
+      max-width: 63ch;
+      color: #34414d;
+    }
+
+    .hero-top-banner {
+      width: 100vw;
+      max-width: 100vw;
+      position: relative;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      margin: -22px 0 18px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      aspect-ratio: 21 / 6;
+      max-height: 300px;
+      background: #e5eae6;
+    }
+
+    .hero-top-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
+    }
+
+    .photo-groupride {
+      margin: 22px auto 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      aspect-ratio: 16 / 9;
+      min-height: 220px;
+      max-height: min(52vw, 420px);
+      width: 100%;
+      max-width: min(960px, 100%);
+      background: #eef0ee;
+      position: relative;
+    }
+
+    .photo-groupride img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .hero-top-banner {
+        margin-top: -22px;
+        aspect-ratio: 16 / 7;
+        max-height: 170px;
+      }
+
+      .photo-groupride {
+        min-height: 180px;
+        max-height: none;
+        max-width: 100%;
+      }
+    }
+
+    section {
+      margin-top: 28px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: clamp(1.28rem, 2.8vw, 1.95rem);
+      font-weight: 600;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 67ch;
+    }
+
+    .offers-table-wrap {
+      overflow-x: auto;
+      margin-top: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 14px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f3f3f3;
+      text-align: left;
+      font-size: 1.02rem;
+    }
+
+    td {
+      background: #fff;
+    }
+
+    .price {
+      margin-top: 12px;
+      display: inline-block;
+      background: var(--accent-soft);
+      color: #1f4f3f;
+      border: 1px solid #c9e3d9;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    .hero ul {
+      margin-top: 12px;
+    }
+
+    .site-footer {
+      margin-top: 28px;
+      background: #005b41;
+      color: #f2f6f4;
+    }
+
+    .footer-top {
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: #006646;
+    }
+
+    .footer-top-inner,
+    .footer-bottom-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 14px 20px;
+    }
+
+    .footer-top-inner {
+      display: flex;
+      justify-content: flex-end;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-top-inner a {
+      color: #e9f3ef;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .footer-top-inner a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .footer-bottom {
+      background: #004d38;
+    }
+
+    .footer-bottom-inner {
+      text-align: center;
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #e9f3ef;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      .top-bar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="brand">Kenta Bike Guide</div>
+      <nav>
+        <a href="#offers">Guided Tours</a>
+        <a href="about.html">About Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <figure class="hero-top-banner">
+      <img src="bikepack.jpg" alt="Bikepacking on the trail" width="1200" height="900" loading="eager">
+    </figure>
+    <section class="hero">
+      <p class="eyebrow">San Francisco + Peninsula</p>
+      <h1>Bike San Francisco.</h1>
+      <p>
+        Hi, I run Kenta Bike Guide myself and I help people plan and ride routes around San Francisco and the Peninsula.
+        Some folks want an easy shorter spin, others want to go the full 25 miles. I will help you pick
+        a route that matches your pace and make sure you feel prepared before we roll out. My goal is to make you more comfortorable with exploring the bay on bike!
+      </p>
+      <ul>
+        <li>Ride distance: 0 to 25 miles</li>
+        <li>Region: San Francisco and Peninsula</li>
+        <li>Pace: beginner-friendly to steady endurance</li>
+        <li>Format: planning call, guided rides, and small groups</li>
+      </ul>
+    </section>
+
+    <section id="offers">
+      <div class="section-head">
+        <h2>Guided Tour Levels</h2>
+        <p>Choose the level of support that best matches your goals. Every option starts with a route planning Zoom call tailored to your ride and comfort level.</p>
+      </div>
+      <figure class="photo-groupride">
+        <img src="groupride.jpg" alt="Group ride" width="1200" height="900" loading="lazy">
+      </figure>
+      <div class="offers-table-wrap">
+        <table>
+          <tr>
+            <th>Level</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <th>Level 1: Route Plan Session</th>
+            <td>
+              We meet on Zoom to discuss what kind of ride you want. I suggest a route and send you a map so you can ride confidently on your own.
+              <div class="price">$40 per planning session</div>
+            </td>
+          </tr>
+          <tr>
+            <th>Level 2: Guided Ride (1 Rider)</th>
+            <td>
+              Includes the full planning call plus I join you for the ride. I bring spare tubes, a pump, and patch kits.
+              Please bring your own bike and helmet, or I can help you rent one. A 25-mile ride at a relaxed pace is usually around 3 hours.
+              <div class="price">$195 per guided ride</div>
+            </td>
+          </tr>
+          <tr>
+            <th>Level 3: Group Guided Ride (Up to 3)</th>
+            <td>
+              Same support as Level 2, built for larger groups up to 3 riders. We can add coffee stops and lunch spots to make the day more enjoyable and social.
+              <div class="price">$360 per group ride</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </section>
+
+    <section id="meeting">
+      <div class="section-head">
+        <h2>Meeting Up & Transportation</h2>
+        <p>Flexible meetups are available based on your location, route type, and group size.</p>
+      </div>
+      <ul>
+        <li>Start from your location: I can bike or drive to your home to begin the ride when needed and practical.</li>
+        <li>Ride start shuttle: I can drive myself, one passenger, and up to two bikes to a selected starting point.</li>
+        <li>Plan ahead: we will confirm pickup and start logistics before ride day so everything runs smoothly.</li>
+      </ul>
+    </section>
+
+    <section id="gear">
+      <div class="section-head">
+        <h2>Gear & Preparation</h2>
+        <p>Bringing your own setup is preferred, but alternatives are available.</p>
+      </div>
+      <ul>
+        <li>Please bring your own bike, helmet, water, and food.</li>
+        <li>If that is not possible, we can discuss alternate options in advance.</li>
+        <li>Bike availability can be arranged for an additional fee.</li>
+      </ul>
+    </section>
+
+    <section id="routes">
+      <div class="section-head">
+        <h2>Route Style</h2>
+        <p>Routes are matched to your skill level and comfort on the bike.</p>
+      </div>
+      <ul>
+        <li>Most rides focus on road cycling in San Francisco and the Peninsula.</li>
+        <li>Gravel segments can be added by request.</li>
+        <li>Route planning prioritizes clear navigation, safety, and enjoyable pacing.</li>
+      </ul>
+    </section>
+
+    <section id="notes">
+      <div class="section-head">
+        <h2>Important Notes & Safety</h2>
+      </div>
+      <ul>
+        <li>This guide service does not include insurance. Riders who require insurance should arrange their own coverage.</li>
+        <li>Safety is always the top priority during planning and on-ride guidance.</li>
+        <li>If conditions become unsafe due to sudden weather changes or other risks, the tour may be immediately canceled.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-top-inner">
+        <a href="#">Home</a>
+        <a href="about.html">Inquiry</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        Copyright &copy; SF Bike Guide. All Right Reserved.
+        <div class="footer-links">
+          <a href="#">Personal information protection policy</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

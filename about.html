@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | SF Bike Guide</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #1f2933;
+      --muted: #5f6b76;
+      --line: #d8d8d8;
+      --accent: #2f6d59;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .header-inner, main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px 20px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    a:hover {
+      border-color: var(--accent);
+    }
+
+    .card {
+      margin-top: 22px;
+      padding: 6px 0 0;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      line-height: 1.22;
+      font-family: "Avenir Next", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #006b4b;
+      font-weight: 700;
+      max-width: 20ch;
+    }
+
+    p {
+      margin: 14px 0 0;
+      color: #33414c;
+      max-width: 65ch;
+    }
+
+    .about-intro {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr minmax(200px, 280px);
+      gap: 28px 32px;
+      align-items: start;
+    }
+
+    .about-intro-text p {
+      max-width: none;
+    }
+
+    .about-photo-frame {
+      margin: 0;
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      aspect-ratio: 3 / 4;
+      max-height: 420px;
+      background: #e8ebe9;
+    }
+
+    .about-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 42%;
+      transform: scale(1.18);
+      transform-origin: 50% 45%;
+      display: block;
+    }
+
+    @media (max-width: 720px) {
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .about-photo-frame {
+        max-width: 280px;
+        max-height: 360px;
+        margin: 0 auto;
+      }
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--accent);
+      background: #f8faf8;
+      color: var(--muted);
+    }
+
+    .contact-block {
+      margin-top: 26px;
+      text-align: center;
+    }
+
+    .contact-block p {
+      margin: 0;
+      max-width: none;
+      color: #33414c;
+    }
+
+    .contact-title {
+      margin-top: 14px;
+      font-weight: 700;
+      color: #006b4b;
+      font-size: clamp(1.45rem, 3.5vw, 2rem);
+      line-height: 1.2;
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 20px auto 30px;
+      padding: 0 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">SF Bike Guide</div>
+      <a href="index.html">Back to Guide Details</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="card">
+      <h1>I am a biking guide.</h1>
+      <ul>
+        <li>Name: Kenta Davis</li>
+        <li>Location: San Francisco, CA</li>
+      </ul>
+
+      <div class="about-intro">
+        <div class="about-intro-text">
+          <p>
+            I run SF Bike Guide as a solo operator with the goal of reducing the barrier to entry for new riders.
+            Every plan is built around your pace,
+            experience level, and what kind of day you want to have on the bike.
+          </p>
+          <p>
+            If you are new to Bay Area riding or just want a smoother experience on unfamiliar roads,
+            I aim to make your ride safe, efficient, and genuinely enjoyable.
+          </p>
+        </div>
+        <figure class="about-photo-frame">
+          <img src="myself_redrocks.jpg" alt="Kenta Davis" width="800" height="1067" loading="lazy">
+        </figure>
+      </div>
+      <div class="contact-block">
+        <p class="contact-title">Inquiry</p>
+        <p>For guide reservations or any questions, please feel free to contact me at the email address or telephone number below.</p>
+        <p>dkenta12(at)gmail.com</p>
+        <p>706-767-0306</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    SF Bike Guide - guided rides and route support in San Francisco.
+  </footer>
+</body>
+</html>
