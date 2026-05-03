@@ -161,6 +161,39 @@
       display: block;
     }
 
+    .route-photo-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 18px;
+      align-items: stretch;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #f5f6f5;
+    }
+
+    .route-photo-cell {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      height: clamp(240px, 34vw, 380px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .route-photo-cell img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
     @media (max-width: 640px) {
       .hero-top-banner {
         margin-top: -22px;
@@ -172,6 +205,21 @@
         min-height: 180px;
         max-height: none;
         max-width: 100%;
+      }
+
+      .route-photo-cell {
+        padding: 5px;
+        height: clamp(180px, 32vw, 280px);
+      }
+    }
+
+    @media (max-width: 380px) {
+      .route-photo-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .route-photo-cell {
+        height: clamp(200px, 45vw, 260px);
       }
     }
 
@@ -427,6 +475,14 @@
         <li>Gravel segments can be added by request.</li>
         <li>Route planning prioritizes clear navigation, safety, and enjoyable pacing.</li>
       </ul>
+      <div class="route-photo-pair">
+        <figure class="route-photo-cell">
+          <img src="sampleroute.png" alt="Example route overview" width="1200" height="900" loading="lazy">
+        </figure>
+        <figure class="route-photo-cell">
+          <img src="SFbridge.jpg" alt="Riding near the San Francisco waterfront and bridge" width="1200" height="900" loading="lazy">
+        </figure>
+      </div>
     </section>
 
     <section id="notes">
